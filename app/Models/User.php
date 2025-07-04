@@ -28,21 +28,18 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
     /**
-     * Get the attributes that should be cast.
+     * Return a key value array, containing any custom claims to be added to the JWT.
      *
-     * @return array<string, string>
+     * @return array
      */
-    protected function casts(): array
+    public function getJWTCustomClaims()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return [];
     }
 }
